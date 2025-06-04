@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 실행할 쿼리문들 정의 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.mapper.BoardMapper">
+  <select id="selectBoardList" resultType="com.yedam.vo.BoardVO">
+    select * from tbl_board order by 1
+  </select>
+  
+  <insert id = "insertBoard" parameterType="com.yedam.vo.BoardVO">
+  insert into tbl_board(board_no , title , content , writer)
+  values(board_seq.nextval , #{title} , #{content} , #{writer})
+  </insert>
+  
+  <update id ="updateBoard" parameterType="com.yedam.vo.BoardVO">
+  	update tbl_board
+  	<set>
+  	<if test="title != null">
+  	 title = #{title} 
+  	</if> 
+  	<if test="content != null">
+	 ,content = #{content}   	
+  	</if>
+  	<if test="writer != null">
+	 ,writer = #{writer} 
+  	</if>
+  	 where board_no = #{boardNo}
+  	</set>
+  </update>
+  
+  <delete id="deleteBoard" parameterType="int">
+  delete from tbl_board
+  where board_no = #{boardNo}
+  </delete>
+  
+  
+  
+</mapper>
