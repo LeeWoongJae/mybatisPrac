@@ -8,6 +8,19 @@
     select * from tbl_board order by 1
   </select>
   
+  <select id="selectBoard" parameterType="int" resultType="Board">
+  select board_no,
+         title,
+         writer,
+         content,
+         write_date,
+         read_cont
+   from tbl_board	
+   where board_no = #{boardNo}
+  </select>
+  
+  
+  
   <insert id = "insertBoard" parameterType="com.yedam.vo.BoardVO">
   insert into tbl_board(board_no , title , content , writer)
   values(board_seq.nextval , #{title} , #{content} , #{writer})
@@ -28,6 +41,14 @@
   	 where board_no = #{boardNo}
   	</set>
   </update>
+  
+  <update id="updateReadCont" parameterType="Board">
+  update tbl_board 
+  set read_cont = read_cont + 1 
+  where board_no = #{boardNo} 
+  </update>
+  
+  
   
   <delete id="deleteBoard" parameterType="int">
   delete from tbl_board
