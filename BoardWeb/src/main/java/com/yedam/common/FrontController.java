@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.control.AddBoardControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ModifyBoardControl;
+import com.yedam.control.RemoveBoardControl;
 
 public class FrontController extends HttpServlet{
 // url pattern을 key , value 로 관리
@@ -26,9 +28,11 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// 글 목록 출력 > BoardList.do
-		map.put("/boardList.do", new BoardListControl());
-		map.put("/boardControl.do", new BoardControl());
-		map.put("/addBoard.do", new AddBoardControl());
+		map.put("/boardList.do", new BoardListControl()); // 글리스트
+		map.put("/board.do", new BoardControl()); // 글 상세화면
+		map.put("/addBoard.do", new AddBoardControl()); // 글 추가
+		map.put("/modifyBoard.do", new ModifyBoardControl()); // 글 수정
+		map.put("/removeBoard.do", new RemoveBoardControl()); // 글 삭제
 	}
 	
 	@Override

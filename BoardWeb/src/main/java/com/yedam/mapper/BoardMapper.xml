@@ -8,6 +8,22 @@
     select * from tbl_board order by 1
   </select>
   
+  <!-- paging select -->
+  <select id="selectListWithPaging" parameterType="int" resultType="Board">
+
+	SELECT b.*
+	FROM (SELECT rownum rn , a.*
+	      FROM (SELECT *
+	            FROM tbl_board
+	            ORDER BY board_no desc) a ) b
+	WHERE b.rn > (#{page} - 1) * 5
+	<![CDATA[
+	AND b.rn <= (#{page} * 5)
+	]]>
+  
+  </select>
+  
+  
   <select id="selectBoard" parameterType="int" resultType="Board">
   select board_no,
          title,
@@ -30,16 +46,16 @@
   	update tbl_board
   	<set>
   	<if test="title != null">
-  	 title = #{title} 
+  	 title = #{title},
   	</if> 
   	<if test="content != null">
-	 ,content = #{content}   	
+	 content = #{content},
   	</if>
   	<if test="writer != null">
-	 ,writer = #{writer} 
+	 writer = #{writer},
   	</if>
-  	 where board_no = #{boardNo}
   	</set>
+  	 where board_no = #{boardNo}
   </update>
   
   <update id="updateReadCont" parameterType="Board">

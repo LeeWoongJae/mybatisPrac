@@ -21,9 +21,10 @@ public class AddBoardControl implements Control {
 		
 		// GET 방식 요청일 경우
 		if(req.getMethod().equals("GET")){
-		
+			// RequestDispatcher -> 요청 페이지를 재지정
+			// 모든 요청들을 frontcontrol에서 처리하기 위헤서 get 매소드에 dispatcher로 받아온다
 			req.getRequestDispatcher("WEB-INF/jsp/addBoard.jsp").forward(req, resp);
-		
+			
 		}else if (req.getMethod().equals("POST")) {
 		// POST 방식 요청일 경우
 		// addBoard.serv?title=제목&content=내용&writer=user89
@@ -42,7 +43,7 @@ public class AddBoardControl implements Control {
 				if(svc.registBoard(board)) {
 					System.out.println("등록 완료!");
 					// 목록이동(새로운 페이지 요청으로 인해서 명명한 웹서블릿 페이지로 이동)
-					//resp.sendRedirect("boardList.serv");
+					resp.sendRedirect("boardList.do");
 				}else {
 					System.out.println("등록 실패!");
 				}
