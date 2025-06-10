@@ -1,3 +1,4 @@
+<%@page import="com.yedam.common.SearchDTO"%>
 <%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,9 +6,17 @@
 <h3>글수정화면(modifyForm.jsp)</h3>
 <%
 	BoardVO board = (BoardVO)request.getAttribute("board");
+	String pg = (String)request.getAttribute("page");
+	String sc = (String)request.getAttribute("searchCondition");
+	String kw = (String)request.getAttribute("keyword");
+	
 %>
 	<form action="modifyBoard.do" method="post">
 	<input type="hidden" name="boardNo" value="<%=board.getBoardNo() %>">
+	<input type="hidden" name="page" value="<%=pg%>">
+	<input type="hidden" name="searchCondition" value="<%=sc%>">
+	<input type="hidden" name="keyword" value="<%=kw%>">
+    
     <table class="table">
     
         <tr>

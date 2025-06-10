@@ -4,9 +4,16 @@
 <jsp:include page="../include/header.jsp" />
 <%
 	BoardVO board = (BoardVO)request.getAttribute("board");
+	String pg = (String)request.getAttribute("page");
+	String sc = (String)request.getAttribute("searchCondition");
+	String kw = (String)request.getAttribute("keyword");
+	String writeDate = (String)request.getAttribute("writeDate");
 %>
 <form action="modifyBoard.do">
 <input type="hidden" name="boardNo" value="<%=board.getBoardNo() %>">
+<input type="hidden" name="page" value="<%=pg%>">
+<input type="hidden" name="searchCondition" value="<%=sc%>">
+<input type="hidden" name="keyword" value="<%=kw%>">
 
     <h3>상세화면</h3>
     <table class="table">

@@ -2,8 +2,11 @@ package com.yedam.service;
 
 
 import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 
@@ -19,8 +22,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> boardList(int page) {
-		return mapper.selectListWithPaging(page);
+	public List<BoardVO> boardList(SearchDTO searh) {
+		return mapper.selectListWithPaging(searh);
 	}
 
 	@Override
@@ -64,6 +67,15 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return false;
 	}
+
+	@Override
+	public int getTotalCount(SearchDTO search) { // 페이지를 만들 전체 데이터수 계산
+		return mapper.selectCount(search);
+	}
+
+
+
+	
 
 	
 
