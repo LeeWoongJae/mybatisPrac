@@ -52,7 +52,7 @@ public class BoardListControl implements Control{
 			req.setAttribute("pageInfo", paging);
 			req.setAttribute("search", search);
 			// 요청 페이지 재지정
-			req.getRequestDispatcher("WEB-INF/jsp/boardList.jsp").forward(req, resp);
+			req.getRequestDispatcher("user/boardList.tiles").forward(req, resp);
 			
 	}
 	

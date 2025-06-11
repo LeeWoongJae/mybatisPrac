@@ -4,6 +4,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yedam.mapper.MemberMapper">
+  <!-- https://velog.io/@ajongs/Mybatis-%EC%99%80-%EC%B0%A8%EC%9D%B4 -->
+ <!-- 회원 단일 조회 -->
   <select id="selectMember" resultType="Member">
   	select member_id,
   	       member_name,
@@ -13,4 +15,14 @@
 	where member_id = #{id}
 	and password = #{pw}
   </select>
+
+ <!-- 회원목록 -->
+ <select id="selectList" resultType="Member" parameterType="String">
+   select *
+   from tbl_member
+   order by ${order}
+   
+ </select> 
+  
+  
 </mapper>
