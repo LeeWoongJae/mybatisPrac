@@ -46,7 +46,7 @@
             <td><a href="board.do?boardNo=${vo.boardNo }&page=${pageInfo.currentPage }&searchCondition=${search.searchCondition }&keyword=${search.keyword}">${vo.boardNo}</a></td>
             <td>${vo.title }</td>
             <td>${vo.writer }</td>
-            <td><fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+            <td><fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd" /></td>
             <td><fmt:formatNumber value="${vo.readCont }" pattern="#,###" /></td>
         </tr>
     	

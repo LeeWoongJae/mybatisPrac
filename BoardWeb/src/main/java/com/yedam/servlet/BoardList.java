@@ -24,7 +24,7 @@ import com.yedam.vo.BoardVO;
  * ex > /boardList.serv > html/boardList.serv 로 바뀌면 엄연히 다른 경로
  * 약간 뭔가 alias 느낌
  */
-@WebServlet("/boardList.serv")
+@WebServlet("/servlet/boardList.serv")
 public class BoardList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

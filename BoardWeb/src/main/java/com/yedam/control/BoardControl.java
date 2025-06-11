@@ -22,7 +22,7 @@ public class BoardControl implements Control{
 		String page = req.getParameter("page");
 		String sc = req.getParameter("searchCondition");
 		String kw = req.getParameter("keyword");
-		String writeDate = req.getParameter("writeDate");
+		
 		
 		
 		BoardService svc = new BoardServiceImpl();
@@ -31,7 +31,7 @@ public class BoardControl implements Control{
 		req.setAttribute("page", page);
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
-		req.setAttribute("writeDate", writeDate);
+		
 		req.getRequestDispatcher("user/board.tiles").forward(req, resp);
 		
 	}

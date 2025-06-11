@@ -27,28 +27,26 @@
   
   <!-- paging select -->
   <select id="selectListWithPaging" parameterType="Search" resultType="Board">
-
 	SELECT b.*
 	FROM (SELECT rownum rn , a.*
 	      FROM (SELECT *
-	            FROM tbl_board
+	            FROM tbl_board 
 	            <choose>
 	             <when test="searchCondition !=null and searchCondition == 'T'.toString() ">
-	              WHERE title LIKE '%'||#{keyword}||'%'
+	              WHERE title LIKE '%'||#{keyword}||'%' 
 	            </when>
 	            <when test="searchCondition !=null and searchCondition == 'W'.toString() ">
-	              WHERE writer LIKE '%'||#{keyword}||'%'
+	              WHERE writer LIKE '%'||#{keyword}||'%' 
 	            </when>
 	            <when test="searchCondition != null and searchCondition == 'TW'.toString() ">
 	              WHERE (title LIKE '%'||#{keyword}||'%') OR (writer LIKE '%'||#{keyword}||'%') 
 	            </when>
 	            </choose>
-	            ORDER BY board_no desc) a ) b
-	WHERE b.rn > (#{page} - 1) * 5
+	            ORDER BY board_no desc) a ) b 
+	WHERE b.rn > (#{page} - 1) * 5 
 	<![CDATA[
 	AND b.rn <= (#{page} * 5)
 	]]>
-  
   </select>
   
   

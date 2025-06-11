@@ -13,7 +13,7 @@ public class LoginFormControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO 로그인 화면 open
-		req.getRequestDispatcher("user/loginForm.tiles").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp").forward(req, resp);
 		
 	}
 

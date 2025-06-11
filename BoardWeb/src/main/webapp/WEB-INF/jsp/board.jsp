@@ -3,14 +3,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<jsp:include page="../include/header.jsp" />
-<%--
+<%
 	BoardVO board = (BoardVO)request.getAttribute("board");
 	String pg = (String)request.getAttribute("page");
 	String sc = (String)request.getAttribute("searchCondition");
 	String kw = (String)request.getAttribute("keyword");
-	String writeDate = (String)request.getAttribute("writeDate");
---%>
+%>
 <form action="modifyBoard.do">
 <input type="hidden" name="boardNo" value="${board.boardNo }">
 <input type="hidden" name="page" value="${page }">
@@ -45,7 +43,7 @@
     </table>
 </form>
 <script>
-let bNo = ${board.boardNo};
+let bNo = "${board.boardNo }";
 console.log(bNo);
 document.querySelector('button.btn-danger').addEventListener('click', function(){
 	location.href='removeBoard.do?boardNo='+bNo;
@@ -61,4 +59,3 @@ const removeDataFnc = () =>{
 button.addEventListener('click',removeDataFnc);
 -->
 </script>
-<jsp:include page="../include/footer.jsp" />
