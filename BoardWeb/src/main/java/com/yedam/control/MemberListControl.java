@@ -24,7 +24,7 @@ public class MemberListControl implements Control {
 		MemberService svc = new MemberServiceImpl();
 		List<MemberVO> list = svc.memberList(order);
 		req.setAttribute("memberList", list);
-		req.getRequestDispatcher("WEB-INF/jsp/member/memberList.jsp").forward(req, resp);
+		req.getRequestDispatcher("admin/memberList.tiles").forward(req, resp);
 
 	}
 

@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.Control;
 
-public class LoginFormControl implements Control {
+public class GetReplyControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 로그인 화면 open
-		req.getRequestDispatcher("WEB-INF/jsp/loginForm.jsp").forward(req, resp);
 		
 	}
 

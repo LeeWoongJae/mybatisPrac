@@ -30,7 +30,7 @@ public class LoginControl implements Control {
 			
 			HttpSession session = req.getSession();// 웹 브라우저 쿠키를 저장
 			session.setAttribute("logId", member.getMemberId()); // session에 로그인된 id 저장
-			
+			session.setAttribute("auth", member.getResponsibility());
 			if(member.getResponsibility().equals("User")) {
 				// 글 등록 화면으로 
 				resp.sendRedirect("addBoard.do");

@@ -9,6 +9,7 @@
   <typeAliases>
   <typeAlias alias="Board" type="com.yedam.vo.BoardVO"/>
   <typeAlias alias="Member" type="com.yedam.vo.MemberVO"/>
+  <typeAlias alias="Reply" type="com.yedam.vo.ReplyVO"/>
   <typeAlias alias="Search" type="com.yedam.common.SearchDTO"/>
   </typeAliases>
   <environments default="development">
@@ -25,5 +26,6 @@
   <mappers> <!-- QUERY를 담는 XML -->
     <mapper resource="com/yedam/mapper/BoardMapper.xml"/>
     <mapper resource="com/yedam/mapper/MemberMapper.xml"/>
+    <mapper resource="com/yedam/mapper/ReplyMapper.xml"/>
   </mappers>
 </configuration>

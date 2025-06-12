@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
 import com.yedam.common.PageDTO;
@@ -51,9 +52,20 @@ public class BoardListControl implements Control{
 			req.setAttribute("blist", list); // 요청정보(request 객체에 담아서 전달)
 			req.setAttribute("pageInfo", paging);
 			req.setAttribute("search", search);
-			// 요청 페이지 재지정
-			req.getRequestDispatcher("user/boardList.tiles").forward(req, resp);
 			
+			HttpSession session = req.getSession();
+			String auth = (String)session.getAttribute("auth");
+			if(auth != null && auth.equals("User")) {
+				// 일반인용 요청 페이지 재지정 
+				req.getRequestDispatcher("user/boardList.tiles").forward(req, resp);
+			}
+			else if(auth != null && auth.equals("Admin")) {
+				// 관리자용 요청 페이지 재지정
+				req.getRequestDispatcher("admin/board/boardList.tiles").forward(req, resp);
+				
+			}else {
+				req.getRequestDispatcher("user/boardList.tiles").forward(req, resp);
+			}
 	}
 	
 
