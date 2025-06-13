@@ -7,7 +7,7 @@
  <select id="replList" parameterType = "int" resultType="Reply">
         select reply_no , board_no , reply , replyer , reply_date
         from tbl_reply
-        where board_no = #{boardNo}
+        where board_no = #{boardNo} 
  </select>
  
  <!-- 해당 댓글번호 쿼리 -->
@@ -19,8 +19,11 @@
  
  <!-- 댓글 등록 -->
  <insert id="registRepl" parameterType="Reply" >
+ 	<selectKey keyProperty="replyNo" order="BEFORE" resultType="int">
+ 		SELECT repl_seq.nextval FROM dual 
+ 	</selectKey>
  	insert into tbl_reply(reply_no , board_no , reply , replyer) 
- 	values(repl_seq.nextval, #{boardNo}, #{reply}, #{replyer})
+ 	values(#{replyNo}, #{boardNo}, #{reply}, #{replyer})
  </insert>
  
  <!-- 댓글 삭제 -->

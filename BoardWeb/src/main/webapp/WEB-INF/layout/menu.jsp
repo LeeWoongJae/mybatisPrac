@@ -14,7 +14,7 @@
                         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃(${logId })</a>
                       </c:otherwise>
                     </c:choose>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dummy</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="allProduct.do">제품</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
