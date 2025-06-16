@@ -29,8 +29,8 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
-		return mapper.replList(boardNo);
+	public List<ReplyVO> replyList(int boardNo , int page) {
+		return mapper.replList(boardNo , page);
 	}
 
 	@Override
@@ -47,6 +47,12 @@ public class ReplyServiceImpl implements ReplyService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int replyTotal(int boardNo) {
+
+		return mapper.selectTotal(boardNo);
 	}
 
 }

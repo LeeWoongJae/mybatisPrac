@@ -10,24 +10,16 @@ import com.yedam.common.Control;
 import com.yedam.service.ReplyService;
 import com.yedam.service.ReplyServiceImpl;
 
-public class RemoveReplyControl implements Control {
+public class replyCountControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String boardNo = req.getParameter("boardNo");
 		
 		ReplyService svc = new ReplyServiceImpl();
-		// reply_no 기준 삭제
-		String replyNo = req.getParameter("replyNo");
+		int totalCnt = svc.replyTotal(Integer.parseInt(boardNo));
 		
-		
-			if(svc.removeReply(Integer.parseInt(replyNo))) {
-				resp.getWriter().print("{\"retCode\": \"Success\"}");
-			} else {
-				resp.getWriter().print("{\"retCode\": \"Fail\"}");
-			}
-		
-		
-		
+		resp.getWriter().print("{\"totalCnt\":"+totalCnt+"}");
 
 	}
 

@@ -1,6 +1,7 @@
 package com.yedam.control;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,7 @@ public class AddReplyControl implements Control {
 		rvo.setBoardNo(Integer.parseInt(boardNo));
 		rvo.setReply(reply);
 		rvo.setReplyer(replyer);
+		rvo.setReplyDate(new Date());
 		// json 문자열 생성 함수
 		Map<String , Object> map = new HashMap<>();
 		
@@ -40,13 +42,12 @@ public class AddReplyControl implements Control {
 		if(svc.addReply(rvo)) {
 			map.put("retVal", rvo);
 			map.put("retCode", "Success");
-			// {"retCode":"Success"}
-			// escape : "\"
-			// resp.getWriter().print("{\"retCode\":\"Success\"}");
+		
+			
 		}else {
 			map.put("retCode", "Fail");
-			// {"retCode":"Fail"}
-			// resp.getWriter().print("{\"retCode\":\"Fail\"}");
+			
+			
 		}
 		String json = gson.toJson(map);
 		System.out.println(json);

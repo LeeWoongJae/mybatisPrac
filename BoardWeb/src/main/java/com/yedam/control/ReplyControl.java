@@ -25,9 +25,10 @@ public class ReplyControl implements Control {
 		
 		
 		String boardNo = req.getParameter("boardNo");
-				
+		String page = req.getParameter("page");
 		
-		List<ReplyVO>list = svc.replyList(Integer.parseInt(boardNo));
+		List<ReplyVO> list = svc.replyList(Integer.parseInt(boardNo),Integer.parseInt(page));
+		
 		
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();

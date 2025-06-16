@@ -24,6 +24,8 @@ import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.RemoveBoardControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyControl;
+import com.yedam.control.replyCountControl;
+import com.yedam.control.replyInfoControl;
 
 public class FrontController extends HttpServlet{
 // url pattern을 key , value 로 관리
@@ -58,6 +60,8 @@ public class FrontController extends HttpServlet{
 		map.put("/addReply.do", new AddReplyControl());
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/getReply.do", new GetReplyControl());
+		map.put("/replyCount.do", new replyCountControl());
+		map.put("/replyInfo.do", new replyInfoControl());
 		
 	}
 	

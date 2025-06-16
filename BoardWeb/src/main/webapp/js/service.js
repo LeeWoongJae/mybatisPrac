@@ -1,15 +1,15 @@
 /**
  * service.js 
  */
-
 const svc = { // service interface와 유사
 	// svc 객체의 add라는 메소드
 	add : function(n1 = 0 , n2 = 0){
 		return n1 + n2;
 	},
 	// 목록 출력
-	replyList(boardNo , successCallback , errorCallback){
-		fetch('replyList.do?boardNo='+boardNo)
+	replyList(param={bno,page}, successCallback , errorCallback){
+		
+		fetch('replyList.do?boardNo='+param.bno+"&page="+param.page)
 		.then(data => data.json())
 		.then(successCallback)
 		.catch(errorCallback)
@@ -21,17 +21,23 @@ const svc = { // service interface와 유사
 		.then(successCallback)
 		.catch(errorCallback)
 	},
-	addReply(param={boardNo , reply , replyer}, successCallback, errorCallback){
+	addReply(param={bno, reply, replyer}, successCallback, errorCallback){
 		fetch('addReply.do',
 			{
 				method : 'post',
 				headers : {'Content-Type':'application/x-www-form-urlencoded'},
-				body : 'boardNo='+param.boardNo+'&reply='+param.reply+'&replyer='+param.replyer
+				body : 'boardNo='+param.bno+'&reply='+param.reply+'&replyer='+param.replyer
 			
 			})
 		.then(data => data.json())
 		.then(successCallback)
 		.catch(errorCallback)
+	},
+	replyCount(bno ,successCallback, errorCallback ){
+		fetch('replyCount.do?boardNo='+bno)
+				.then(data => data.json())
+				.then(successCallback)
+				.catch(errorCallback)
 	}
 }
 const add = (n1 = 1 , n2 = 1) => {return n1 + n2}
