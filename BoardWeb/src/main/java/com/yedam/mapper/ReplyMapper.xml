@@ -6,7 +6,7 @@
 <!-- 해당 글의 댓글 리스트 -->
  <select id="replList" parameterType = "int">
     select a.* 
-	from (select /*+INDEX (r pk_reply) */ rownum rn, r.* 
+	from (select /*+INDEX_DESC (r pk_reply) */ rownum rn, r.* 
 	      from tbl_reply r  
 	      where board_no = #{boardNo}) a 
 	where a.rn > (#{page} - 1) * 5 
