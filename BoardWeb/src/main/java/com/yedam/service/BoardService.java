@@ -19,12 +19,12 @@ public interface BoardService {
 	
 	// 전체카운트 계산
 	public int getTotalCount(SearchDTO search); // selectCount()
-	public List<Map> chartCount();
+	public List<Map<String, Object>> chartCount();
 	
 	// Event
-	public List<EventVO> eventList(); // list
-	public int addEvent(EventVO vo); // add
-	public int removeEvent(EventVO no); // del
+	public List<Map<String, Object>> eventList(); // list
+	public int addEvent(Map<String, String> map); // add
+	public int removeEvent(int eventNo); // del
 	
 	
 	

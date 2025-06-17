@@ -24,10 +24,10 @@ public class EventListControl implements Control {
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("text/json;charset=UTF-8"); // 문자열이 ??? 또는 null 뜨는 경우 추가
 		BoardService svc = new BoardServiceImpl();
-		List<EventVO> list = svc.eventList();
+		 
 		
-		Map<String , Object> map = new HashMap<>();
-		map.put("data", list);
+		List<Map<String , Object>> map = svc.eventList();
+		
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		String json = gson.toJson(map);

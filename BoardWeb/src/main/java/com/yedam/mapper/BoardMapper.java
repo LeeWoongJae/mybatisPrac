@@ -21,11 +21,12 @@ public interface BoardMapper {
 	
 	// 전체 건수.
 	public int selectCount(SearchDTO search);
-	public List<Map> selectUserByCount();
+	public List<Map<String , Object>> selectUserByCount();
 	
 	// Event
-	public List<EventVO> selectEvent();
-	public int insertEvent(EventVO vo);
-	public int deleteEvent(EventVO vo);
+	public List<Map<String, Object>> selectEvent();
+	public int insertEvent(Map<String , String> map);
+	public int deleteEvent(int eventNo);
+	
 	
 }

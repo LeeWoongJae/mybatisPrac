@@ -76,24 +76,24 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Map> chartCount() {
+	public List<Map<String , Object>> chartCount() {
 		return mapper.selectUserByCount();
 	}
 
 	// Event
 	@Override
-	public List<EventVO> eventList() {
+	public List<Map<String, Object>> eventList() {
 		return mapper.selectEvent();
 	}
 
 	@Override
-	public int addEvent(EventVO vo) {
-		return mapper.insertEvent(vo);
+	public int addEvent(Map<String , String> map) {
+		return mapper.insertEvent(map);
 	}
 
 	@Override
-	public int removeEvent(EventVO no) {
-		return mapper.deleteEvent(no);
+	public int removeEvent(int eventNo) {
+		return mapper.deleteEvent(eventNo);
 	}
 
 	

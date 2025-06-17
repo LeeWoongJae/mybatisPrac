@@ -64,7 +64,7 @@
   <select id="selectUserByCount" resultType="map">
 	select writer AS "writer" , count(1) AS "cnt" , member_name AS "memberName" 
 	from tbl_board b join tbl_member m 
-	on (b.writer = m.member_id) 
+	on b.writer = m.member_id 
 	group by writer , member_name
   </select>
   
@@ -106,15 +106,17 @@
   
   <!-- Event -->
   <!-- List -->
-    <select id="selectEvent" resultType="Events">
-     select * 
-     from tbl_events 
+    <select id="selectEvent">
+    select title as "title"
+       ,TO_CHAR(start_date,'yyyy-MM-dd') as "start"
+       ,TO_CHAR(end_date,'yyyy-MM-dd') as "end" 
+     from tbl_events
     </select>
     
     <!-- Add -->
-    <insert id="insertEvent" parameterType="Events">
-    insert into tbl_events(event_no , event_content, event_user , event_date_start , event_date_end) 
-	values(ev_seq.nextval , ${eventContent} , ${eventUser} ,TO_DATE(${eventDateStart},'yyyy-MM-dd') , TO_DATE(${eventDateEnd},'yyyy-MM-dd')) 
+    <insert id="insertEvent" parameterType="map">
+    insert into tbl_events(event_no , title,  start_date , end_date) 
+	values(ev_seq.nextval, #{title}, #{start}, #{end})
     </insert>
     
     <!-- Remove -->
