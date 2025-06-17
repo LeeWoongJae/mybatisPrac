@@ -13,37 +13,28 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
-import com.yedam.service.ReplyService;
-import com.yedam.service.ReplyServiceImpl;
-import com.yedam.vo.ReplyVO;
+import com.yedam.service.BoardService;
+import com.yedam.service.BoardServiceImpl;
+import com.yedam.vo.EventVO;
 
-public class ReplyControl implements Control {
+public class EventListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/json;charset=UTF-8");
-		//replyList.do => json returned
-		ReplyService svc = new ReplyServiceImpl();
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/json;charset=UTF-8"); // 문자열이 ??? 또는 null 뜨는 경우 추가
+		BoardService svc = new BoardServiceImpl();
+		List<EventVO> list = svc.eventList();
 		
-		
-		String boardNo = req.getParameter("boardNo");
-		String page = req.getParameter("page");
-		page = "1";
-		List<ReplyVO> list = svc.replyList(Integer.parseInt(boardNo),Integer.parseInt(page));
-		
-		//DataTable용
 		Map<String , Object> map = new HashMap<>();
 		map.put("data", list);
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		//String json = gson.toJson(list);
 		String json = gson.toJson(map);
-		System.out.println(json);
-		
 		PrintWriter out = resp.getWriter();
 		out.print(json);
 		
-		
+
 	}
 
 }

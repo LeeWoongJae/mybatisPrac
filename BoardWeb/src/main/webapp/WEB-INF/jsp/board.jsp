@@ -3,6 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<link href="//cdn.datatables.net/2.3.2/css/dataTables.dataTables.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="//cdn.datatables.net/2.3.2/js/dataTables.min.js"></script>
+
 
 <form action="modifyBoard.do">
 <input type="hidden" name="boardNo" value="${board.boardNo }">
@@ -53,7 +58,34 @@ div.reply span{
 	<div class="header">
 	<input type="text" class="col-sm-8" id="reply" >
 	<button class="col-sm-3 btn btn-primary" id="addReply">등록</button>
-		
+	<button class="col-sm-3 btn btn-danger" id="delReply">삭제</button>
+	</div>
+	<table id="example" class="display">
+        <thead>
+            <tr>
+                <th>댓글번호</th>
+                <th>글번호</th>
+                <th>댓글내용</th>
+                <th>작성자</th>
+                <th>작성일시</th>
+            </tr>
+        </thead>
+        
+        <tfoot>
+            <tr>
+                <th>댓글번호</th>
+                <th>글번호</th>
+                <th>댓글내용</th>
+                <th>작성자</th>
+                <th>작성일시</th>
+            </tr>
+        </tfoot>
+    </table>
+	<!-- 
+    <div>
+	<ul id="target">
+        
+		</ul>
 	</div>
 	<div class="content">
 		<ul>
@@ -69,8 +101,11 @@ div.reply span{
 		<ul id="target">
 		</ul>
 	</div>
+	-->
+	<!--
 	<div class="footer">
-		<nav aria-label="...">
+	
+	 	<nav aria-label="...">
 			<ul class="pagination pagination-sm">
 				<li class="page-item disabled"><a class="page-link">Previous</a>
 				</li>
@@ -81,16 +116,109 @@ div.reply span{
 				<li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
 		</nav>
+	
 	</div>
+	-->
 </div>
 <!-- 댓글 관련 페이지 -->
 <script>
 let logId = "${logId}";
 let bno = "${board.boardNo}";
 document.querySelector('button.btn-danger').addEventListener('click', function(){
+	
 	location.href='removeBoard.do?boardNo='+bno;
 	
 });
+</script>
+<script>
+let table = 
+new DataTable('#example', {
+    ajax: 'replyList.do?boardNo='+bno,
+    columns: [
+        { data: 'replyNo' },
+        { data: 'boardNo' },
+        { data: 'reply' },
+        { data: 'replyer' },
+        { data: 'replyDate' }
+        
+    ],
+    lengthMenu : [5 , 10 , 15, -1],
+    order :[[0, 'desc']],
+    
+});
+//delete row
+table.on('click', 'tbody tr', (e) => {
+    let classList = e.currentTarget.classList;
+ 
+    if (classList.contains('selected')) {
+        classList.remove('selected');
+    }
+    else {
+        table.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+        classList.add('selected');
+    }
+    document.querySelector('#delReply').addEventListener('click', async function () {
+	let rno = e.target.parentElement.parentElement.dataset.rno;
+	let data = await fetch('removeReply.do?replyNo='+rno); 
+	let result = data.json();
+	console.log(result);
+	if(result.retCode=="Success"){
+    	table.row('.selected').remove().draw(false);
+		alert('성공');		
+	}else{
+		alert('실패');
+		return;
+	}
+    });
+});
+
+function addNewRow(){
+ // ajax
+ let reply = document.querySelector('#reply').value;
+ if(!reply || !logId){
+  return;
+  }
+ 
+  //교수님 정답 
+ fetch('addReply.do?barodNo='+bno+"&reply="+reply+"%replyer="+logId)
+ .then(replyData => replyData.json())
+ .then(result => {
+	let rvo = result.retVal;
+	console.log(result);
+ 	// 화면 추가.
+	table.row
+	  .add({
+		boardNo : rvo.boardNo,
+		reply : rvo.reply,
+		replyer : rvo.replyer,
+		replyDate : rvo.replyDate
+	   })
+	   .draw(false);
+
+ })
+ .catch(err=>console.log(err))
+ 
+ <!--
+ // my
+ fetch('addReply.do?')
+ .then(replyData => replyData.json())
+ .then(result => {
+	console.log(result);
+ 	// 화면 추가.
+	table.row
+	  .add({
+		boardNo : bno,
+		reply : result.reply,
+		replyer : result.replyer,
+		replyDate : new Date()
+	   })
+	   .draw(false);
+
+ })
+ .catch(err=>console.log(err))
+ -->
+}// end of addNewRow
+
 </script>
 <script src="js/service.js"></script>
 <script src="js/reply.js"></script>
@@ -99,7 +227,7 @@ document.querySelector('button.btn-danger').addEventListener('click', function()
 const button = document.querySelector('button.btn-danger');
 
 const removeDataFnc = () =>{
-  location.href='removeBoard.do?boardNo='+bNo;
+  location.href='removeBoard.do?boardNo='+bno;
 };
  
 button.addEventListener('click',removeDataFnc);

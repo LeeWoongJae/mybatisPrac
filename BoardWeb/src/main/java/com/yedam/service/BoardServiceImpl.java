@@ -2,6 +2,7 @@ package com.yedam.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -9,6 +10,7 @@ import com.yedam.common.DataSource;
 import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
+import com.yedam.vo.EventVO;
 
 public class BoardServiceImpl implements BoardService {
 	SqlSession sqlSession = DataSource.getInstance().openSession();
@@ -73,7 +75,26 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectCount(search);
 	}
 
+	@Override
+	public List<Map> chartCount() {
+		return mapper.selectUserByCount();
+	}
 
+	// Event
+	@Override
+	public List<EventVO> eventList() {
+		return mapper.selectEvent();
+	}
+
+	@Override
+	public int addEvent(EventVO vo) {
+		return mapper.insertEvent(vo);
+	}
+
+	@Override
+	public int removeEvent(EventVO no) {
+		return mapper.deleteEvent(no);
+	}
 
 	
 

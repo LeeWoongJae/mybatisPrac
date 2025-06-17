@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.control.AddBoardControl;
+import com.yedam.control.AddEventControl;
 import com.yedam.control.AddReplyControl;
 import com.yedam.control.AllControl;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.ChartControl;
+import com.yedam.control.ChartPageControl;
+import com.yedam.control.EventListControl;
 import com.yedam.control.GetReplyControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -22,6 +26,7 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.MemberListControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.RemoveBoardControl;
+import com.yedam.control.RemoveEventControl;
 import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyControl;
 import com.yedam.control.replyCountControl;
@@ -45,6 +50,10 @@ public class FrontController extends HttpServlet{
 		map.put("/modifyBoard.do", new ModifyBoardControl()); // 글 수정
 		map.put("/removeBoard.do", new RemoveBoardControl()); // 글 삭제
 		
+		// chart
+		map.put("/chart.do", new ChartControl());// chart
+		map.put("/chartPage.do", new ChartPageControl());
+		
 		// member
 		map.put("/loginForm.do", new LoginFormControl()); // 화면
 		map.put("/login.do", new LoginControl()); // 실제 로그인 처리
@@ -62,6 +71,12 @@ public class FrontController extends HttpServlet{
 		map.put("/getReply.do", new GetReplyControl());
 		map.put("/replyCount.do", new replyCountControl());
 		map.put("/replyInfo.do", new replyInfoControl());
+		
+		
+		//event
+		map.put("/eventList.do", new EventListControl());
+		map.put("/addEvent.do", new AddEventControl());
+		map.put("/removeEvent.do", new RemoveEventControl());
 		
 	}
 	

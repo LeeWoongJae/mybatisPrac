@@ -1,9 +1,11 @@
 package com.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.common.SearchDTO;
 import com.yedam.vo.BoardVO;
+import com.yedam.vo.EventVO;
 
 public interface BoardService {
 	// processing unit
@@ -17,6 +19,13 @@ public interface BoardService {
 	
 	// 전체카운트 계산
 	public int getTotalCount(SearchDTO search); // selectCount()
+	public List<Map> chartCount();
+	
+	// Event
+	public List<EventVO> eventList(); // list
+	public int addEvent(EventVO vo); // add
+	public int removeEvent(EventVO no); // del
+	
 	
 	
 }

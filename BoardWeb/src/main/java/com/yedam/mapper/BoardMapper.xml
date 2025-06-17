@@ -43,9 +43,9 @@
 	            </when>
 	            </choose>
 	            ORDER BY board_no desc) a ) b 
-	WHERE b.rn > (#{page} - 1) * 5 
+	WHERE b.rn > (#{page} - 1) * 5 * 0
 	<![CDATA[
-	AND b.rn <= (#{page} * 5)
+	AND b.rn <= (#{page} * 50000)
 	]]>
   </select>
   
@@ -59,6 +59,13 @@
          read_cont
    from tbl_board	
    where board_no = #{boardNo}
+  </select>
+  
+  <select id="selectUserByCount" resultType="map">
+	select writer AS "writer" , count(1) AS "cnt" , member_name AS "memberName" 
+	from tbl_board b join tbl_member m 
+	on (b.writer = m.member_id) 
+	group by writer , member_name
   </select>
   
   
@@ -97,6 +104,24 @@
   where board_no = #{boardNo}
   </delete>
   
+  <!-- Event -->
+  <!-- List -->
+    <select id="selectEvent" resultType="Events">
+     select * 
+     from tbl_events 
+    </select>
+    
+    <!-- Add -->
+    <insert id="insertEvent" parameterType="Events">
+    insert into tbl_events(event_no , event_content, event_user , event_date_start , event_date_end) 
+	values(ev_seq.nextval , ${eventContent} , ${eventUser} ,TO_DATE(${eventDateStart},'yyyy-MM-dd') , TO_DATE(${eventDateEnd},'yyyy-MM-dd')) 
+    </insert>
+    
+    <!-- Remove -->
+    <delete id="deleteEvent" parameterType="int">
+    delete from tbl_events 
+    where event_no = #{eventNo}
+    </delete>
   
   
 </mapper>

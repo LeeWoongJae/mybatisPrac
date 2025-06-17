@@ -28,15 +28,6 @@ function showReplyList(){
 	document.querySelector('#target').innerHTML="";
 	svc.replyList({ bno, page },
 		result => {
-			console.log(result);
-			// 한 페이지에 5개 까지 데이터가 나오는데 그 데이터가 0이되면
-			if(result.length == 0){
-				// 페이지를 앞당기고
-				page--;
-				// 새로 리스트를 받아와서 뿌려준다
-				showReplyList();
-			}
-			
 			let ul = document.querySelector('#target');
 			// ul 밑 첫번쨰 child를 지정
 			let template = document.querySelector('#target li');
@@ -183,7 +174,16 @@ async function deleteReply(event){
 	svc.removeReply(rno
 		,result => {
 			//if(e.target.replyer!=logId){console.log(e.target.replyer); return;}
-			result.totalCnt--;
+			
+			console.log(result);
+			// 한 페이지에 5개 까지 데이터가 나오는데 그 데이터가 0이되면
+			if (result.length == 0 && page != 0) {
+				// 페이지를 앞당기고
+				page = page-1;
+				// 새로 리스트를 받아와서 뿌려준다
+				showReplyList();
+			}
+						
 				if(result.retCode=="Success"){
 					alert("처리성공");
 					//event.target.parentElement.parentElement.remove();
