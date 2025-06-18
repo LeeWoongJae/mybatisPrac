@@ -26,7 +26,7 @@ public interface BoardMapper {
 	// Event
 	public List<Map<String, Object>> selectEvent();
 	public int insertEvent(Map<String , String> map);
-	public int deleteEvent(int eventNo);
+	public int deleteEvent(EventVO vo);
 	
 	
 }

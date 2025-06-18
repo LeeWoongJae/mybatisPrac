@@ -92,8 +92,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int removeEvent(int eventNo) {
-		return mapper.deleteEvent(eventNo);
+	public int removeEvent(EventVO vo) {
+		return mapper.deleteEvent(vo);
 	}
 
 	

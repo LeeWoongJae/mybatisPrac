@@ -24,7 +24,7 @@ public interface BoardService {
 	// Event
 	public List<Map<String, Object>> eventList(); // list
 	public int addEvent(Map<String, String> map); // add
-	public int removeEvent(int eventNo); // del
+	public int removeEvent(EventVO vo); // del
 	
 	
 	

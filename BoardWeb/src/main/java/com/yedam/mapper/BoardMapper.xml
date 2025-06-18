@@ -120,9 +120,11 @@
     </insert>
     
     <!-- Remove -->
-    <delete id="deleteEvent" parameterType="int">
+    <delete id="deleteEvent" parameterType="Events">
     delete from tbl_events 
-    where event_no = #{eventNo}
+    where title = #{title} 
+    and start_date = TO_DATE(#{start},'yyyy-MM-dd') 
+    and end_date = TO_DATE(#{end},'yyyy-MM-dd')
     </delete>
   
   
