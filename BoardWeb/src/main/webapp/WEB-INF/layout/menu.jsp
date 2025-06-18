@@ -15,8 +15,8 @@
                       </c:otherwise>
                     </c:choose>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="allProduct.do">제품</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="chart.do">Chart</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="selectable.html">FullCalendar</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="signup.do">회원가입</a>
                 </div>
             </div>

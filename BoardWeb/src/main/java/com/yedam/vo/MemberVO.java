@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class MemberVO {
-	private String memberId, memberName, password, responsibility;
+	private String memberId, memberName, password, responsibility, img;
 }

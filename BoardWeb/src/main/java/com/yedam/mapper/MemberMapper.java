@@ -13,4 +13,7 @@ public interface MemberMapper {
 	// (parameter_name) << 안에 있는 파라메타 명은 쿼리문에 쓰일 이름이어야한다
 	public MemberVO selectMember(@Param("id") String memberId, @Param("pw") String password); 
 	public List<MemberVO> selectList(String order);
+	public int insertMember(MemberVO vo);
+	
+	public MemberVO selectMemberInfo(String id);
 }

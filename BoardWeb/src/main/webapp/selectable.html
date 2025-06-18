@@ -43,9 +43,12 @@
         calendar.unselect()
       },
       eventClick: async function(arg) {
+		console.log(arg);
         if (confirm('Are you sure you want to delete this event?')) {
-			
-		    let data = await fetch('removeEvent.do?eventNo='+eventNo);
+			let start = arg.startStr.substring(0,9);
+			let end	= arg.endStr.substring(0,9);
+		    // let data = await fetch('removeEvent.do?eventNo='+eventNo);
+		     let data = await fetch('removeEvent.do?title='+title+"&start="+start+"&end="+end);
     	    let result = await data.json();
     	    if(result.retCode=='Success'){
 	          arg.event.remove()

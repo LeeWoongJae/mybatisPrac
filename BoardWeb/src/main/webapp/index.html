@@ -3,14 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>홈페이지에 접속하였습니다</title>
+<link href="css/styles.css" rel="stylesheet" />
+
 </head>
 <body>
 <h3>Welcome My homepage</h3>
-<h2>Woongjae Lee</h2>
-<h2>Okay</h2>
-<a href="html/sample.html">sample페이지이동</a>
+<h2>COVID-19 CENTER INFO</h2>
+<select id="sido">
+</select>
+<!--<input id="centerName" , type="text"> -->
+<button class="btn btn-primary" value="">조회</button>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>센터ID</th>
+				<th>센터NAME</th>
+				<th>PHONENUMBER</th>
+			</tr>
+		</thead>
+		<tbody id="centerList">
+		</tbody>
+	</table>
+	<ul id="target"></ul>
+	<script type="module" src="js/covid.js" ></script>
+<!-- <a href="html/sample.html">sample페이지이동</a> <br> -->
 <!-- webapp 기본 시작 경로가 http://localhost:8080/BoardWeb/ 이기 때문에 mapping 가능 -->
-<br>
-<a href="boardList.serv">게시판리스트이동</a>
+
+<!-- <a href="boardList.serv">게시판리스트이동</a> -->
+<script>
+</script>
 </body>
 </html>

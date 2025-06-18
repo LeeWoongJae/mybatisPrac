@@ -24,5 +24,24 @@ public class MemberServiceImpl implements MemberService {
 		// Mapper.xml && Mapper.java에 있는 id값과 동일
 		return mapper.selectList(order);
 	}
+	@Override
+	public boolean addMember(MemberVO vo) {
+		int r = mapper.insertMember(vo);
+		if(r == 1) {
+			sqlSession.commit();
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public boolean getMemberInfo(String id) {
+		MemberVO vo = mapper.selectMemberInfo(id);
+		System.out.println(vo);
+		if(vo != null) {
+			return true;
+		}
+		return false;
+		
+	}
 
 }
