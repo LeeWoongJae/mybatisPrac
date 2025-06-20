@@ -63,7 +63,7 @@ console.log("user:"+user);
 			fetch('checkId.do?id='+user)
 			.then(memberData=>memberData.json())
 			.then(result=>{
-				console.log(result);
+				console.log(result.password);
 				if(result.retCode=='Exist'){
 					alert("사용불가 password");
 				}else{

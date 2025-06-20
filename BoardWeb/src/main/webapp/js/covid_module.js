@@ -2,9 +2,16 @@
  * covid_module.js
  */
 const defaultNum = 10;
+let centerName;
 let url = "http://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=254&serviceKey=vExVsx1FJkY9Uma%2BjJadUHgr%2BPmrFWpSYvG64oal%2FQDNkwHqVRw%2B68%2Bl3hmjmyB7SNjoN%2BtUI9j%2FljKQObjoFg%3D%3D";
 function makeRow(center){
 	let tr = document.createElement('tr');
+	tr.addEventListener('click',function(e){
+		console.log(center);
+		centerName = center.centerName;
+		window.open('map.jsp?lat='+center.lat+'&lng='+center.lng+'&centerName='+centerName);
+		
+	});
 	for (const prop of ['id', 'centerName','phoneNumber']) {
 		let td = document.createElement('td');
 		td.innerHTML = center[prop];
